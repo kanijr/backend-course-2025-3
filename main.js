@@ -49,14 +49,6 @@ try {
   process.exit(1);
 }
 
-data = data.map(({ Rainfall, Pressure3pm, Humidity3pm }) => {
-  const obj = { Rainfall, Pressure3pm };
-  if (options.humidity) {
-    obj.Humidity3pm = Humidity3pm;
-  }
-  return obj;
-});
-
 if (options.rainfall) {
   const rainFallMin = options.rainfall;
   data = data.filter(({ Rainfall }) => Number(Rainfall) > rainFallMin);
@@ -64,7 +56,7 @@ if (options.rainfall) {
 
 if (options.output) {
   const outputPath = options.output;
-  res = data
+  let res = data
     .map(
       ({ Rainfall, Pressure3pm, Humidity3pm }) =>
         "" +
