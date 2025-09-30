@@ -71,7 +71,7 @@ if (options.output) {
         Rainfall +
         " " +
         Pressure3pm +
-        (Humidity3pm === undefined ? "" : " " + Humidity3pm)
+        (options.humidity ? " " + Humidity3pm : "")
     )
     .join("\n");
 
@@ -80,6 +80,6 @@ if (options.output) {
 
 if (options.display) {
   data.forEach(({ Rainfall, Pressure3pm, Humidity3pm }) =>
-    console.log(Rainfall, Pressure3pm, Humidity3pm ?? "")
+    console.log(Rainfall, Pressure3pm, options.humidity ? Humidity3pm : "")
   );
 }
